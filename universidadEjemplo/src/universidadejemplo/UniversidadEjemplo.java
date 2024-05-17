@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package universidadejemplo;
 
 import java.sql.Connection;
@@ -56,7 +53,29 @@ public class UniversidadEjemplo {
         }
     }
 
-   
+        public void inscribirAlumno() {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection conexion = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/universidadulp", "root", "");
+
+            String sqlInscripcion = "INSERT INTO Inscripcion(idInscripto,idAlumno,idMateria,nota)"
+                    + "VALUES()";
+            
+
+            PreparedStatement ps = conexion.prepareStatement(sqlInscripcion);
+            int registroInscrip = ps.executeUpdate();
+            System.out.println(registroInscrip);
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Error de drivers" + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion" + ex.getMessage());
+
+        }
+
+    }
+
+    
 
     public static void main(String[] args) throws SQLException {
 
