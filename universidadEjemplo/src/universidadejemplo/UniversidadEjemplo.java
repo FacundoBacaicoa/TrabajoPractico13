@@ -74,7 +74,22 @@ public class UniversidadEjemplo {
         }
 
     }
+ public void desinscribirAlumno() {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection conexion = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/universidadulp", "root", "");
 
+            String sqldesc = "DELETE FROM inscripcion WHERE idInscripto=1";
+
+            PreparedStatement ps = conexion.prepareStatement(sqldesc);
+            int registros = ps.executeUpdate();
+            System.out.println(registros);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Error de drivers" + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion" + ex.getMessage());
+        }
+    }
     
 
     public static void main(String[] args) throws SQLException {
